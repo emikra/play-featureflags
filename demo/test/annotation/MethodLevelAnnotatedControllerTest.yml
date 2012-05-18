@@ -1,0 +1,7 @@
+featureflags.Feature(methodLevelFeature1):
+  name: methodLevelFeature1
+  enabled: false
+
+featureflags.Feature(methodLevelFeature2):
+  name: methodLevelFeature2
+  enabled: false

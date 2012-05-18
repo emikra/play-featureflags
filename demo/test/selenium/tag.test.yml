@@ -1,0 +1,15 @@
+featureflags.Feature(tagTestMenu1):
+  name: tagTestMenu1
+  enabled: false
+
+featureflags.Feature(tagTestMenu2):
+  name: tagTestMenu2
+  enabled: false
+
+featureflags.Feature(tagTestMenu3):
+  name: tagTestMenu3
+  enabled: false
+
+featureflags.Feature(tagTestMenu4):
+  name: tagTestMenu4
+  enabled: false

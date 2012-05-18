@@ -1,0 +1,23 @@
+#{extends 'template.html' /}
+
+<h1>This is a test page.</h1>
+
+<ul id="menu">
+
+    #{featureflags.feature 'tagTestMenu1'}
+    <li id="tagTestMenu1">Menu Item 1</li>
+    #{/featureflags.feature}
+
+    #{featureflags.feature 'tagTestMenu2'}
+    <li id="tagTestMenu2">Menu Item 2</li>
+    #{/featureflags.feature}
+
+    #{featureflags.feature 'tagTestMenu3'}
+    <li id="tagTestMenu3">Menu Item 3</li>
+    #{/featureflags.feature}
+
+    #{featureflags.feature 'tagTestMenu4'}
+    <li id="tagTestMenu4">Menu Item 4</li>
+    #{/featureflags.feature}
+</ul>
+    

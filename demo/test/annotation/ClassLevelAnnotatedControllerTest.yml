@@ -1,0 +1,3 @@
+featureflags.Feature(classLevelFeature):
+  name: classLevelFeature
+  enabled: false

@@ -1,0 +1,190 @@
+#{extends 'template.html' /}
+
+<h1 id="doc">Documentation</h1>
+<p>
+    Welcome to the demo app for the featureflags module for <a href="http://www.playframework.org">Play!</a>.<br/>
+    This demo only shows the most basic functionality: the ability to enable and disable features at runtime. For more
+    detailed information, please refer to the documentation on the wiki or the <a href="/@tests">test suite</a>.
+</p>
+
+<h2>Introduction</h2>
+<p>
+    A Feature is any piece of functionality in your application that you want to be able to
+    switch on and off at runtime. For the moment, only 'ON' and 'OFF' are supported, but in the future we'll add support
+    for conditional (per environment, user profile, user role, ...) switches.
+</p>
+
+<h2>How to define Features</h2>
+<p>
+    Features are defined by name.
+    You can (and should, more later) define features in two ways:</p>
+<ul>
+    <li>in your <strong>views</strong>, by using the feature tag. If you wrap a part of your view in the feature tag,
+        the module will recognize this part as being a feature, and therefore will hide that part from your views if the
+        feature is turned off. A common example is to hide some menu items, but not others.
+    </li>
+    <li>on your <strong>controllers</strong>, by using the @Feature annotation on your classes or methods. This will
+        ensure that a 404 Not Found response is returned when a feature is turned off, and essentially make it appear as
+        if the controller class or method just wasn't there.
+    </li>
+</ul>
+
+<h3>Tagging your views</h3>
+<p>
+    To define a feature on an element in your application views, you can use the feature tag, like so:
+</p>
+
+<pre class="code">
+&#35;{featureflags.feature 'featureName'}    
+    &lt;div&gt;
+        ... feature content goes here ... 
+    &lt;/div&gt;
+&#35;{/featureflags.feature}
+</pre>
+
+<p>
+    The div and all contents won't be rendered, unless the feature is switched on.
+</p>
+
+
+<h3>Annotating Your Controllers</h3>
+<p>
+    Of course, just hiding a menu item is not enough to completely make it unavailable. Users could have bookmarked the
+    URL behind the menu item, for example.<br/>
+    In order to disallow access by URL, you can annotate your controller methods:
+</p>
+<pre class="code">
+@Feature("myFeature")
+public static void myActionMethod(){
+    // this action is available or not,
+    // depending on whether "myFeature" is
+    // enabled
+}
+</pre>
+
+
+<p>
+    You can also annotate a whole controller class, like so:
+</p>
+
+<pre class="code">
+@Feature("myFeature")
+    public class FeaturedController {
+        // all actions in this controller will be
+        // available or not, depending on whether
+        // "myFeature" is enabled or not.
+
+        public static void action1(){
+        }
+
+        public static void action1(){
+        }
+
+    }
+</pre>
+
+<h2>What Happens Next?</h2>
+<p>
+    Whenever a view containing a feature tag is rendered, or an annotated controller is invoked, the featureflags
+    module will pick this up.
+</p>
+<p>
+    The module will check if the feature is defined in the db. There are three possible scenarios:
+</p>
+<ol>
+    <li>
+        The feature is known in the database, and is is switched ON: everything happens as it normally would.
+    </li>
+    <li>
+        The feature is known in the database, and it is switched OFF: the module will not render the tagged view part,
+        or will send a 404 Not Found response in case of a controller.
+    </li>
+    <li>
+        The feature does not exist in the database yet: the module will create the feature in the database. If you are
+        running your Play! app in production mode, it will be switched off. In development mode, it will be switched on.
+        (see <a href="#devVsProd">below</a>).
+    </li>
+</ol>
+
+<h2 id="devVsProd">DEV vs PROD mode</h2>
+<p>
+    Since version 0.2 of the module, the module behaves differently in development and production mode.
+</p>
+
+<p>
+    When you run your Play! app in development mode, all features will be turned ON by default. This is very convenient, since
+    you don't want to bothered with switching on features while developing.<br/>
+    You can, of course, still use the admin page to go and switch a feature off if you wish to do so.
+</p>
+<p>
+    However, when in PROD mode, all features that are not known in the db yet, will be switched to OFF by default. This
+    ensures you don't accidentally put features in production that aren't ready yet.
+</p>
+
+<h2>The Admin page</h2>
+<p>
+    The admin page is provided to you by the module. It shows an overview of the features, their status and a button
+    per feature to switch individual features on and off.
+</p>
+
+<p>
+    You can view the admin page for this demo app under <a href="/admin/features">/admin/features</a>.
+</p>
+
+<h1 id="demo">Demo</h1>
+<p>
+    Below is an example menu with feature tags. On the left, you see the code, on the right te resulting menu.
+    <br/>
+    Of course, if you just started up this demo application, you won't see any menu items yet. Remember: features are
+    turned off by default. So feel free to go to the <a href="/admin/features">admin page</a>, play around
+    with the switches and refresh this page to see the result.
+    <br/>
+
+</p>
+
+<table>
+    <tr>
+        <td width="60%">
+<pre class="code">
+&lt;ul id="menu"&gt;
+
+    &#35;{featureflags.feature 'demoMenu1'}
+        &lt;li&gt;Menu Item 1&lt;/li&gt;
+    &#35;{/featureflags.feature}
+
+    &#35;{featureflags.feature 'demoMenu2'}
+        &lt;li&gt;Menu Item 2&lt;/li&gt;
+    &#35;{/featureflags.feature}
+
+    &#35;{featureflags.feature 'demoMenu3'}
+        &lt;li&gt;Menu Item 3&lt;/li&gt;
+    &#35;{/featureflags.feature}
+
+    &#35;{featureflags.feature 'demoMenu4'}
+        &lt;li&gt;Menu Item 4&lt;/li&gt;
+    &#35;{/featureflags.feature}
+
+&lt;/ul&gt;
+</pre>
+        </td>
+        <td>
+            <ul id="menu">
+                #{featureflags.feature 'demoMenu1'}
+                <li>Menu Item 1</li>
+                #{/featureflags.feature}
+
+                #{featureflags.feature 'demoMenu2'}
+                <li>Menu Item 2</li>
+                #{/featureflags.feature}
+
+                #{featureflags.feature 'demoMenu3'}
+                <li>Menu Item 3</li>
+                #{/featureflags.feature}
+
+                #{featureflags.feature 'demoMenu4'}
+                <li>Menu Item 4</li>
+                #{/featureflags.feature}
+            </ul>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,9 @@
+featureflags.Feature(enabledFeature):
+  name: enabledFeature
+  enabled: true
+
+featureflags.Feature(disabledFeature):
+  name: disabledFeature
+  enabled: false
+
+      

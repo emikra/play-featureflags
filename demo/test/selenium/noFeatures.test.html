@@ -1,0 +1,11 @@
+#{fixture delete:'all'/}
+
+#{selenium}
+
+        // assert that a message is displayed when no features exist in the db
+        open('/admin/features')
+        waitForPageToLoad(1000)
+        assertElementPresent('noFeaturesFoundTd')
+
+
+#{/selenium}
