@@ -7,21 +7,17 @@ Once defined, a feature will show up on an admin page provided by the module. Th
 
 Feature flags are what flickr uses to be able to do 10+ deployments to production per day. See http://code.flickr.com/blog/2009/12/02/flipping-out/ for more info.
 
-p(note). This module was originally written by Ben Verbeken and was initially modified to use a MongoDB backend (through Morphia), rather than JPA.
+This module was originally written by Ben Verbeken. This version has been modified to use a MongoDB backend (via PlayMorphia), rather than JPA.
 
 Getting Started
 ===============
 
-To install Deadbolt, you can use the modules repository:
-
-	play install featureflags
+TODO
 
 Configuration
 =============
 
-Add the feature flags module to your application configuration.
-
-	- play -> featureflags <version>
+TODO
 
 Usage
 =====
@@ -29,14 +25,17 @@ Usage
 Tagging Views
 -------------
 
+```html
 	#{featureflags.feature 'featureName'}    
 		<div>
 		    ... feature content goes here ... 
 		</div>
 	#{/featureflags.feature}
+```
 
 Example: a Menu
 
+```html
 	<ul id="menu">
 
 		#{featureflags.feature 'demoMenu1'}
@@ -56,13 +55,14 @@ Example: a Menu
 		#{/featureflags.feature}
 
 	</ul>
+```
 
 Annotating Controllers
 ----------------------
 
-Method Level Annotation
-^^^^^^^^^^^^^^^^^^^^^^^
+### Method Level Annotation
 
+```java
 	public class MyController extends Controller {
 
 	  @Feature("myFeature1")
@@ -80,10 +80,11 @@ Method Level Annotation
 	  }
 
 	}
+```
 
-Class Level Annotation
-^^^^^^^^^^^^^^^^^^^^^^
+### Class Level Annotation
 
+```java
 	@Feature("myFeature")
 	public class FeaturedController {
 
@@ -100,3 +101,4 @@ Class Level Annotation
 		}
 
 	}
+```
