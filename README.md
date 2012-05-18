@@ -9,25 +9,25 @@ Feature flags are what flickr uses to be able to do 10+ deployments to productio
 
 p(note). This module was originally written by Ben Verbeken and was initially modified to use a MongoDB backend (through Morphia), rather than JPA.
 
-h2. Sample application
-
-p(note). Your module should contain a sample app in the @sample@ directory that demonstrates the module. Describe how to run the demo here.
-
-h2. Getting started
+Getting Started
+===============
 
 To install Deadbolt, you can use the modules repository:
 
 	play install featureflags
 
-h2. Configuration
+Configuration
+=============
 
 Add the feature flags module to your application configuration.
 
 	- play -> featureflags <version>
 
-h2. Usage
+Usage
+=====
 
-h3. Tagging Views
+Tagging Views
+-------------
 
 	#{featureflags.feature 'featureName'}    
 		<div>
@@ -57,9 +57,11 @@ Example: a Menu
 
 	</ul>
 
-h3. Annotating Controllers
+Annotating Controllers
+----------------------
 
-h4. Method Level Annotation
+Method Level Annotation
+^^^^^^^^^^^^^^^^^^^^^^^
 
 	public class MyController extends Controller {
 
@@ -79,7 +81,8 @@ h4. Method Level Annotation
 
 	}
 
-h4. Class Level Annotation
+Class Level Annotation
+^^^^^^^^^^^^^^^^^^^^^^
 
 	@Feature("myFeature")
 	public class FeaturedController {
