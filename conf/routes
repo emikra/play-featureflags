@@ -1,9 +1,0 @@
-# This file defines all module routes (Higher priority routes first)
-#
-# import these routes in the main app as :
-# *     /                       module:featureflags
-#
-# ~~~~
-
-GET         /?                  featureflags.Features.adminPage
-GET         /{id}/switch        featureflags.Features.switchFeature

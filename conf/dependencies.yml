@@ -1,4 +1,0 @@
-# Module dependencies
-
-require:
-    - play -> morphia [1.2,)
