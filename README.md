@@ -12,12 +12,27 @@ This module was originally written by Ben Verbeken. This version has been modifi
 Getting Started
 ===============
 
-TODO
+Add the following line to the `require` section of your `dependencies.yml` file:
 
-Configuration
-=============
+    - emikra -> play-featureflags-morphia 1.0
+        
+Add the following to the `repositories` section of your `dependencies.yml` file:
 
-TODO
+    - emikra:
+        type: http
+        root: "http://emikra.github.com/play-featureflags/modules/"
+        contains:
+            - emikra -> *
+            
+Update your dependencies:
+
+    $ play dependencies
+    
+or (for Eclipse-based projects):
+
+    $ play eclipify --deps
+    
+The module is currently called `play-featureflags-morphia`, but this may change in the future.
 
 Usage
 =====
