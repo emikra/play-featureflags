@@ -14,13 +14,13 @@ Getting Started
 
 Add the following line to the `require` section of your `dependencies.yml` file:
 
-    - emikra -> play-featureflags-morphia 1.0
+    - emikra -> play-featureflags 1.0
         
 Add the following to the `repositories` section of your `dependencies.yml` file:
 
     - emikra:
         type: http
-        root: "http://emikra.github.com/play-featureflags/modules/"
+        artifact: "http://emikra.github.com/play-featureflags/modules/play-featureflags-1.0.zip"
         contains:
             - emikra -> *
             
@@ -31,8 +31,6 @@ Update your dependencies:
 or (for Eclipse-based projects):
 
     $ play eclipify --deps
-    
-The module is currently called `play-featureflags-morphia`, but this may change in the future.
 
 Usage
 =====
