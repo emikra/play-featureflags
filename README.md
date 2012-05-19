@@ -1,5 +1,5 @@
-Play Feature Flags
-==================
+Play Feature Flags (PlayMorphia Version)
+========================================
 
 This project is a module for playframework that enables you to easily define 'feature flags' by name, using a simple annotation on your controllers and/or a tag in your views.
 
