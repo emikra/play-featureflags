@@ -1,10 +1,10 @@
 # Here you can create play commands that are specific to the module, and extend existing commands
 
-MODULE = 'play-featureflags'
+MODULE = 'playfeatureflags'
 
 # Commands that are specific to your module
 
-COMMANDS = ['play-featureflags:hello']
+COMMANDS = ['playfeatureflags:hello']
 
 def execute(**kargs):
     command = kargs.get("command")
@@ -12,7 +12,7 @@ def execute(**kargs):
     args = kargs.get("args")
     env = kargs.get("env")
 
-    if command == "play-featureflags:hello":
+    if command == "playfeatureflags:hello":
         print "~ Hello"
 
 

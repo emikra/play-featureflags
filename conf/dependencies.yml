@@ -1,4 +1,4 @@
-self: emikra -> play-featureflags 1.0
+self: emikra -> playfeatureflags 1.0
 
 require:
     - play -> morphia [1.2,)
