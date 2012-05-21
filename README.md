@@ -14,7 +14,7 @@ Getting Started
 
 Add the following line to the `require` section of your `dependencies.yml` file:
 
-    - emikra -> play-featureflags 1.0
+    - emikra -> playfeatureflags 1.0
         
 Add the following to the `repositories` section of your `dependencies.yml` file:
 
